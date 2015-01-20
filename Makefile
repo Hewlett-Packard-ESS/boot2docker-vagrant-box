@@ -1,12 +1,16 @@
-build: boot2docker-vagrant.iso
-	time (packer build -parallel=false template.json)
+#!/bin/bash
+build: clean prepare
+	time (packer.io build -parallel=false template.json)
 
-prepare: clean boot2docker-vagrant.iso
+virtualbox: clean prepare
+	time (packer.io build -only=virtualbox-iso -parallel=false template.json)
 
-boot2docker-vagrant.iso:
-	wget -O boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v1.4.1/boot2docker.iso
+prepare:
+	time (docker build -t hpess/boot2docker . && docker run --rm hpess/boot2docker > boot2docker.iso)
 
 clean:
 	rm -rf *.iso *.box
 
+install:
+	(if [ -f "boot2docker_virtualbox.box" ]; then vagrant box remove -f hpess/boot2docker && vagrant box add hpess/boot2docker boot2docker_virtualbox.box; else echo " ==> Please run make virtualbox first!"; fi)
 .PHONY: clean prepare build
