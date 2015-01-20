@@ -1,24 +1,26 @@
 {
     "variables": {
-        "B2D_ISO_FILE": "boot2docker.iso",
-        "B2D_ISO_CHECKSUM": "d018f0beb973d6dbdf37c16b0f2468bb"
+        "B2D_ISO_FILE": "boot2docker.iso"
     },
     "builders": [{
         "type": "virtualbox-iso",
         "iso_url": "{{user `B2D_ISO_FILE`}}",
-        "iso_checksum_type": "md5",
-        "iso_checksum": "{{user `B2D_ISO_CHECKSUM`}}",
+        "iso_checksum_type": "none",
         "boot_wait": "5s",
         "guest_additions_mode": "attach",
         "guest_os_type": "Linux_64",
         "ssh_username": "docker",
         "ssh_password": "tcuser",
-        "shutdown_command": "sudo poweroff"
+        "shutdown_command": "sudo poweroff",
+        "vboxmanage": [
+    		["modifyvm", "{{.Name}}", "--memory", "1024"],
+    		["modifyvm", "{{.Name}}", "--cpus", "2"]
+  	],
+	"disk_size" : 5000
     }, {
         "type": "vmware-iso",
         "iso_url": "{{user `B2D_ISO_FILE`}}",
-        "iso_checksum_type": "md5",
-        "iso_checksum": "{{user `B2D_ISO_CHECKSUM`}}",
+        "iso_checksum_type": "none",
         "boot_wait": "5s",
         "guest_os_type": "other3xlinux-64",
         "ssh_username": "docker",
@@ -27,14 +29,12 @@
     }, {
         "type": "parallels-iso",
         "iso_url": "{{user `B2D_ISO_FILE`}}",
-        "iso_checksum_type": "md5",
-        "iso_checksum": "{{user `B2D_ISO_CHECKSUM`}}",
+        "iso_checksum_type": "none",
         "boot_wait": "5s",
-        "guest_os_type": "linux",
+        "guest_os_distribution": "linux",
         "ssh_username": "docker",
         "ssh_password": "tcuser",
-        "shutdown_command": "sudo poweroff",
-        "parallels_tools_mode": "disable"
+        "shutdown_command": "sudo poweroff"
     }],
     "provisioners": [
         {
