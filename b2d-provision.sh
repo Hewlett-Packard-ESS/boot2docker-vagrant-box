@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # Creating one partition and formating to ext4
 # See https://github.com/boot2docker/boot2docker/issues/531#issuecomment-61740859
@@ -13,6 +14,7 @@ q
 "| /sbin/fdisk /dev/sda
 /sbin/mkfs.ext4 -L boot2docker-data /dev/sda1
 
+sleep 1
 # Mounting the freshly formatted volume to copy persisted content
 mount /dev/sda1 /mnt
 
@@ -31,10 +33,15 @@ chmod 0600 ${TMP_USERDATA_DIR}/.ssh/authorized_keys
 cd ${TMP_USERDATA_DIR}
 tar cf ${B2D_PERSISTENT_DIR}/userdata.tar ./.ssh
 
-
 ## I want to re-use the bootlocal.sh stuff, but adding one optionnaly from the /vagrant folder
 cat <<EOF >${B2D_PERSISTENT_DIR}/bootlocal.sh
 sudo /usr/local/etc/init.d/nfs-client start
+
+sed -i 's/x:100/x:1250/g' /etc/group
+sed -i 's/1000:50/1250:50/g' /etc/passwd
+chown -R docker:docker /home/docker
+
+easy_install fig
 
 EOF
 sudo chmod a+x ${B2D_PERSISTENT_DIR}/bootlocal.sh
