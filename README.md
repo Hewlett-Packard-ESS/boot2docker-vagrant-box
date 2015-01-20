@@ -1,4 +1,4 @@
-# hpess/boot2docker
+# hp-ess/boot2docker
 This is a fork of [Vagrant Up Boot2Docker](https://raw.github.com/mitchellh/boot2docker-vagrant-box/master/readme_image.gif)
 
 The purpose of this fork is to embed python and fig into the base boot2docker image.

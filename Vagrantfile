@@ -4,7 +4,7 @@ require 'json'
 
 VAGRANTFILE_API_VERSION = '2'
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "hpess/boot2docker"
+  config.vm.box = "hp-ess/boot2docker"
   config.ssh.forward_agent = true
   config.vm.provider :virtualbox do |vb|
   vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
