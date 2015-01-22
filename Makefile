@@ -6,7 +6,7 @@ virtualbox: clean prepare
 	time (packer.io build -only=virtualbox-iso -parallel=false template.json)
 
 prepare:
-	time (docker build -t hp-ess/boot2docker . && docker run --rm hp-ess/boot2docker > boot2docker.iso)
+	time (docker build -t hpess/boot2docker . && docker run --rm hpess/boot2docker > boot2docker.iso)
 
 clean:
 	rm -rf *.iso *.box
