@@ -41,7 +41,7 @@ sed -i 's/x:100/x:1250/g' /etc/group
 sed -i 's/1000:50/1250:50/g' /etc/passwd
 chown -R docker:docker /home/docker
 
-easy_install fig
+easy_install docker-compose
 
 EOF
 sudo chmod a+x ${B2D_PERSISTENT_DIR}/bootlocal.sh

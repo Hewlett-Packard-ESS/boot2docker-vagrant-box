@@ -12,5 +12,5 @@ clean:
 	rm -rf *.iso *.box
 
 install:
-	(if [ -f "boot2docker_virtualbox.box" ]; then vagrant box remove -f hpess/boot2docker && vagrant box add hpess/boot2docker boot2docker_virtualbox.box; else echo " ==> Please run make virtualbox first!"; fi)
+	(if [ -f "boot2docker_virtualbox.box" ]; then vagrant box remove -f hp-ess/boot2docker && vagrant box add hp-ess/boot2docker boot2docker_virtualbox.box; else echo " ==> Please run make virtualbox first!"; fi)
 .PHONY: clean prepare build
