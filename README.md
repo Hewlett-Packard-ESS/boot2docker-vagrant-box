@@ -1,5 +1,5 @@
 # hp-ess/boot2docker
-This is a fork of [Vagrant Up Boot2Docker](https://raw.github.com/mitchellh/boot2docker-vagrant-box/master/readme_image.gif)
+This is a fork of [Vagrant Up Boot2Docker](https://github.com/mitchellh/boot2docker-vagrant-box)
 
 The purpose of this fork is to embed python and docker-compose into the base boot2docker image.
 
@@ -14,6 +14,6 @@ I only really care about virtualbox, as i'm aiming this at a development environ
 As I'm a kind person who aims to make your life easier, this image is naturally available on Vagrant Cloud.  Subsequently - just use the example `Vagrantfile` in this repository to get you going.
 
 ## Caveats
-As this image is aimed at Hewlett-Packard ESS folks, we use uid 1250 and gid 1250 for manipulation of data in all our docker containers (until such a time they implemented uid/gid => host mapping).
+As this image is aimed at Hewlett-Packard ESS folks, we use uid 1250 and gid 1250 for manipulation of data in all our docker containers (until such a time they implement uid/gid => host mapping).
 
 Therefore be aware that if you mount in any voumes, the data will be written with those ids.

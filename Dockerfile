@@ -1,5 +1,5 @@
 FROM boot2docker/boot2docker
-RUN apt-get update && apt-get -y install btrfs-tools python python-setuptools wget
+RUN apt-get update && apt-get -y install python python-setuptools
 
 # Install TCZ base stuff
 ENV ADDITIONAL_TCZ_DEPS python python-setuptools
