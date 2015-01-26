@@ -37,10 +37,6 @@ tar cf ${B2D_PERSISTENT_DIR}/userdata.tar ./.ssh
 cat <<EOF >${B2D_PERSISTENT_DIR}/bootlocal.sh
 sudo /usr/local/etc/init.d/nfs-client start
 
-sed -i 's/x:100/x:1250/g' /etc/group
-sed -i 's/1000:50/1250:50/g' /etc/passwd
-chown -R docker:docker /home/docker
-
 easy_install docker-compose
 
 EOF
